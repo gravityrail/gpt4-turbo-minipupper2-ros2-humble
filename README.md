@@ -30,7 +30,7 @@ Next, adjust the configuration in gpt_config.py.
 ros2 run gpt4_ros gpt_ros2_server
 ```
 ```bash
-# Terminal 1
+# Terminal 2
 ros2 run gpt4_ros gpt_ros2_client
 ```
 
