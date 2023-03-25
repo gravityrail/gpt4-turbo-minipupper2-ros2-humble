@@ -1,7 +1,7 @@
 
 [![ROS2 VERSION](https://img.shields.io/badge/ROS-ROS%202%20Humble-brightgreen)](http://docs.ros.org/en/humble/index.html)
 &nbsp;
-[![LICENSE](https://img.shields.io/badge/license-GPL%203-informational)](https://Hermanye996/gpt4_ros2/blob/main/LICENSE)
+[![LICENSE](https://img.shields.io/badge/license-Apache--2.0-informational)](https://Hermanye996/gpt4_ros2/blob/main/LICENSE)
 &nbsp;
 
 # Description
