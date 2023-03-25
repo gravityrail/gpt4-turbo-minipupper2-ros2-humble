@@ -22,7 +22,7 @@ rosdep install --from-paths src --ignore-src -r -y
 colcon build --symlink-install
 ```
 ## step3 Configuration
-Then, you can adjust the configuration in gpt_config.py
+Next, adjust the configuration in gpt_config.py.
 # Usage
 
 ```bash
@@ -53,4 +53,13 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.                             
 ```
+# Acknowledgement
+We would like to take this opportunity to extend our heartfelt appreciation to Zhengxiao Han for their invaluable contribution to this project. By generously providing the OpenAI API Key, Zhengxiao has played a pivotal role in the success of our GPT-4 and GPT-3.5(Chat GPT) interface for ROS2 Humble.
 
+Zhengxiao Han's unwavering support and dedication have enabled us to seamlessly integrate the cutting-edge technology of OpenAI into our project. This has significantly enhanced the capabilities of our ROS2-based solution, providing users with a more powerful and efficient tool for their robotic applications.
+
+Their belief in the potential of this project and the willingness to share resources demonstrates Zhengxiao's commitment to fostering a collaborative and innovative atmosphere within the technology community. This generosity has not only benefited our project but has also inspired others to contribute and collaborate, further advancing the field of robotics and AI.
+
+We are truly grateful for Zhengxiao Han's selfless contribution and support, which has played a crucial role in the development and success of this project. Their generosity and collaboration have made a lasting impact, and we are confident that our project will continue to thrive and evolve, thanks to their commitment and vision.
+
+Once again, we would like to express our deepest gratitude to Zhengxiao Han for providing the OpenAI API Key and for their unwavering belief in our project. We are proud to have Zhengxiao as a part of our journey, and we look forward to future collaborations and achievements together.
