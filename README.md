@@ -16,7 +16,13 @@ wget https://example.com/myscript.sh
 
 ## step1 Install dependencies
 ```bash
-pip install openai -y
+sudo apt update
+sudo apt upgrade -y
+sudo apt install -y python3
+sudo apt install -y python3-pip
+sudo pip install pysocks
+sudo pip install requests
+sudo pip install openai 
 ```
 
 ## step2 Clone & build the repo
