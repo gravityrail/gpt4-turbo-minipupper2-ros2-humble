@@ -31,8 +31,8 @@ if [ -d "$HOME/gpt4_ros2_ws" ]; then
   echo "Removing existing gpt4_ros2_ws repository..."
   rm -rf "$HOME/gpt4_ros2_ws"
 fi
-mkdir -p ~/gpt4_ros2_ws/src
-cd ~/gpt4_ros2_ws/src
+mkdir -p $HOME/gpt4_ros2_ws/src
+cd $HOME/gpt4_ros2_ws/src
 git clone --depth=1 https://github.com/Hermanye996/gpt4_ros2.git
 cd ..
 gpt4_ros2_ws_dir=$(pwd)
@@ -40,9 +40,9 @@ rosdep install --from-paths src --ignore-src -r -y
 source /opt/ros/humble/setup.bash
 colcon build --symlink-install
 
-sudo sed -i '#source ~/gpt4_ros2_ws/install/setup.bash#d' ~/.bashrc
-echo "source ~/gpt4_ros2_ws/install/setup.bash" >> ~/.bashrc
-. ~/gpt4_ros2_ws/install/setup.bash
+sudo sed -i '#source $HOME/gpt4_ros2_ws/install/setup.bash#d' ~/.bashrc
+echo "source ~/gpt4_ros2_ws/install/setup.bash" >> $HOME/.bashrc
+. $HOME/gpt4_ros2_ws/install/setup.bash
 
 # Ask user for GPT API_KEY
 read -p "Enter your GPT API_KEY: " API_KEY
