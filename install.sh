@@ -33,7 +33,7 @@ if [ -d "$HOME/gpt4_ros2_ws" ]; then
 fi
 mkdir -p ~/gpt4_ros2_ws/src
 cd ~/gpt4_ros2_ws/src
-git clone https://github.com/Hermanye996/gpt4_ros2.git
+git clone --depth=1 https://github.com/Hermanye996/gpt4_ros2.git
 cd ..
 gpt4_ros2_ws_dir=$(pwd)
 rosdep install --from-paths src --ignore-src -r -y
