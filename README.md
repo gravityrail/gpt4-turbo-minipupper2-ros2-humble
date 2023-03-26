@@ -10,9 +10,13 @@
 This project provides a ROS2 Humble wrapper designed for GPT-4 and ChatGPT (GPT-3.5), featuring built-in ROS2 client and server functionality. As the GPT-4 multimodal interface becomes available, we will continue to update the corresponding ROS2 wrapper. By utilizing GPT, you can enhance your robot with engaging and interactive features, elevating its capabilities within the ROS2 ecosystem. This ROS2 wrapper aims to make it easy for developers and researchers to leverage the power of GPT models in their robotic applications.
 
 # Installation
+## One-click Installation
+
+wget https://example.com/myscript.sh
+
 ## step1 Install dependencies
 ```bash
-pip install openai
+pip install openai -y
 ```
 
 ## step2 Clone & build the repo
