@@ -53,6 +53,7 @@ class GPTConfig:
         self.assisstant_response = "default response"
         self.chat_history = [{"role": "system", "content": self.system_prompt}]
 ```
+GPT-4 is currently in a limited beta and only accessible to those who have been granted access. Please join the [waitlist](https://openai.com/waitlist/gpt-4-api) to get access when capacity is available.
 Feel free to adjust the parameters, such as temperature, max_tokens, and top_p, to influence the behavior of the GPT model. You can also customize the system_prompt and user_prompt strings to create unique and engaging interactions with your robot.
 
 Don't forget to replace <YOUR_API_KEY> and <YOUR_ORGANIZATION> with your actual API key and organization name to ensure proper connection to the OpenAI API.
