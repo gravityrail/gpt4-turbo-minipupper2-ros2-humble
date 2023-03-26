@@ -48,7 +48,7 @@ echo "source $HOME/gpt4_ros2_ws/install/setup.bash" >> $HOME/.bashrc
 # Ask user for GPT API_KEY
 read -p "Enter your GPT API_KEY: " API_KEY
 cd $gpt4_ros2_ws_dir/src/gpt4_ros2/gpt4_ros/gpt4_ros
-echo $gpt4_ros2_ws_dir
+pwd
 sudo sed -i "s#<YOUR_API_KEY>#$API_KEY#" gpt_config.py
 if [[ $? -eq 0 ]]; then
   echo "Add API_KEY executed successfully!"
