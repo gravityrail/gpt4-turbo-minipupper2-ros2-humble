@@ -7,7 +7,7 @@
 &nbsp;
 
 # gpt4_ros2
-This project provides a ROS2 Humble wrapper designed for GPT-4 and ChatGPT (GPT-3.5), featuring built-in ROS2 client and server functionality. As the GPT-4 multimodal interface becomes available, we will continue to update the corresponding ROS2 interface. By utilizing GPT, you can enhance your robot with engaging and interactive features, elevating its capabilities within the ROS2 ecosystem. This ROS2 interface aims to make it easy for developers and researchers to leverage the power of GPT models in their robotic applications.
+This project provides a ROS2 Humble wrapper designed for GPT-4 and ChatGPT (GPT-3.5), featuring built-in ROS2 client and server functionality. As the GPT-4 multimodal interface becomes available, we will continue to update the corresponding ROS2 wrapper. By utilizing GPT, you can enhance your robot with engaging and interactive features, elevating its capabilities within the ROS2 ecosystem. This ROS2 wrapper aims to make it easy for developers and researchers to leverage the power of GPT models in their robotic applications.
 
 # Installation
 ## step1 Install dependencies
@@ -30,7 +30,7 @@ colcon build --symlink-install
 
 
 ## step3 Configuration
-We encourage you to customize the GPTConfig class to tailor the functionality of this ROS2 interface for GPT-4 and ChatGPT (GPT-3.5) according to your specific needs. To do this, simply modify the values in the code snippet below to suit your requirements:
+We encourage you to customize the GPTConfig class to tailor the functionality of this ROS2 wrapper for GPT-4 and ChatGPT (GPT-3.5) according to your specific needs. To do this, simply modify the values in the code snippet below to suit your requirements:
 ```python
 class GPTConfig:
     def __init__(self):
