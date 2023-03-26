@@ -35,8 +35,8 @@ mkdir -p $HOME/gpt4_ros2_ws/src
 cd $HOME/gpt4_ros2_ws/src
 git clone --depth=1 https://github.com/Hermanye996/gpt4_ros2.git
 cd ..
-pwd
 gpt4_ros2_ws_dir=$(pwd)
+echo $gpt4_ros2_ws_dir
 rosdep install --from-paths src --ignore-src -r -y
 source /opt/ros/humble/setup.bash
 colcon build --symlink-install
@@ -48,7 +48,7 @@ echo "source $HOME/gpt4_ros2_ws/install/setup.bash" >> $HOME/.bashrc
 # Ask user for GPT API_KEY
 read -p "Enter your GPT API_KEY: " API_KEY
 cd $gpt4_ros2_ws_dir/src/gpt4_ros2/gpt4_ros/gpt4_ros
-pwd
+echo $gpt4_ros2_ws_dir
 sudo sed -i "s#<YOUR_API_KEY>#$API_KEY#" gpt_config.py
 if [[ $? -eq 0 ]]; then
   echo "Add API_KEY executed successfully!"
