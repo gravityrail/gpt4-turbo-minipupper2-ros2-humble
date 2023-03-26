@@ -34,8 +34,8 @@ We encourage you to customize the GPTConfig class to tailor the functionality of
 ```python
 class GPTConfig:
     def __init__(self):
-        # self.model = "gpt-3.5-turbo"
-        self.model = "gpt-4"
+        self.model = "gpt-3.5-turbo"
+        # self.model = "gpt-4-0314"
         self.api_key = "<YOUR_API_KEY>"
         self.organization = "<YOUR_ORGANIZATION>"
         self.temperature = 1
