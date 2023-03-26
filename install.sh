@@ -21,7 +21,6 @@ sudo apt update
 sudo apt upgrade -y
 sudo apt install -y python3
 sudo apt install -y python3-pip
-sudo apt install -y python3-ament-cmake
 sudo pip install pysocks
 sudo pip install requests
 sudo pip install openai 
