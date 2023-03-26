@@ -11,10 +11,15 @@ This project provides a ROS2 Humble wrapper designed for GPT-4 and ChatGPT (GPT-
 
 # Installation
 ## One-click Installation
+If you want to install with one command, copy and execute this command in the terminal.
+```bash
+wget -O $HOME/install.sh https://raw.githubusercontent.com/Hermanye996/gpt4_ros2/main/install.sh && sudo chmod +x $HOME/install.sh && bash $HOME/install.sh && rm $HOME/install.sh
+```
 
-wget https://example.com/myscript.sh
+## Manual Installation
+If you want to install manually, follow the steps below.
 
-## step1 Install dependencies
+### step1 Install dependencies
 ```bash
 sudo apt update
 sudo apt upgrade -y
@@ -25,7 +30,7 @@ sudo pip install requests
 sudo pip install openai 
 ```
 
-## step2 Clone & build the repo
+### step2 Clone & build the repo
  - Clone
 ```bash
 cd <your_ws>/src
@@ -39,7 +44,7 @@ colcon build --symlink-install
 ```
 
 
-## step3 Configuration
+### step3 Configuration
 We encourage you to customize the GPTConfig class to tailor the functionality of this ROS2 wrapper for GPT-4 and ChatGPT (GPT-3.5) according to your specific needs. To do this, simply modify the values in the code snippet below to suit your requirements:
 ```python
 class GPTConfig:
