@@ -16,13 +16,18 @@ pip install openai
 ```
 
 ## step2 Clone & build the repo
-
+ - Clone
 ```bash
 cd <your_ws>/src
 git clone https://github.com/Hermanye996/gpt4_ros2.git
+```
+ - Build
+```bash
+cd <your_ws>
 rosdep install --from-paths src --ignore-src -r -y
 colcon build --symlink-install
 ```
+
 ## step3 Configuration
 We encourage you to customize the GPTConfig class to tailor the functionality of this ROS2 interface for GPT-4 and ChatGPT (GPT-3.5) according to your specific needs. To do this, simply modify the values in the code snippet below to suit your requirements:
 ```python
