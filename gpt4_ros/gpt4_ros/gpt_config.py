@@ -1,7 +1,7 @@
 class GPTConfig:
     def __init__(self):
         # self.model = "gpt-3.5-turbo"
-        self.mode = "gpt-4"
+        self.model = "gpt-4"
         self.api_key = "<YOUR_API_KEY>"
         self.organization = "<YOUR_ORGANIZATION>"
         self.temperature = 1
