@@ -39,14 +39,14 @@ gpt4_ros2_ws_dir=$(pwd)
 rosdep install --from-paths src --ignore-src -r -y
 colcon build --symlink-install
 
-sudo sed -i '|source ~/gpt4_ros2_ws/install/setup.bash|d' ~/.bashrc
+sudo sed -i '#source ~/gpt4_ros2_ws/install/setup.bash#d' ~/.bashrc
 echo "source ~/gpt4_ros2_ws/install/setup.bash" >> ~/.bashrc
 . ~/gpt4_ros2_ws/install/setup.bash
 
 # Ask user for GPT API_KEY
 read -p "Enter your GPT API_KEY: " API_KEY
 cd $gpt4_ros2_ws_dir/src/gpt4_ros2/gpt4_ros/gpt4_ros
-sed -i "s|<YOUR_API_KEY>|$API_KEY|" gpt_config.py
+sed -i "s#<YOUR_API_KEY>#$API_KEY#" gpt_config.py
 if [[ $? -eq 0 ]]; then
   echo "Add API_KEY executed successfully!"
 else
