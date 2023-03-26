@@ -38,6 +38,7 @@ git clone https://github.com/Hermanye996/gpt4_ros2.git
 cd ..
 gpt4_ros2_ws_dir=$(pwd)
 rosdep install --from-paths src --ignore-src -r -y
+source /opt/ros/humble/setup.bash
 colcon build --symlink-install
 
 sudo sed -i '#source ~/gpt4_ros2_ws/install/setup.bash#d' ~/.bashrc
