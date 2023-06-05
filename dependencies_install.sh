@@ -6,8 +6,8 @@
 # Date: 2023-06-04
 
 # Exit the script immediately if a command exits with a non-zero status
-set -x
-# set -e
+# set -x
+set -e
 # Install necessary dependencies for GPT
 sudo apt update
 sudo apt upgrade -y
