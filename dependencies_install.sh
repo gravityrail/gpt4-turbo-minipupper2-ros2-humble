@@ -11,6 +11,7 @@ set -e
 # Install necessary dependencies for GPT
 sudo apt update
 sudo apt upgrade -y
+sudo apt install gnome-terminal -y
 sudo apt install -y python3
 sudo apt install -y python3-pip
 pip install pysocks
