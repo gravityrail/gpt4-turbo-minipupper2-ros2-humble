@@ -53,7 +53,8 @@ else
   exit 1
 fi
 # print success message and wait for user to press any key to run the server and client
-read -p "Press any key to run Demo 1: Simple robot GPT call on the PC side.\nIf you need to run a more advanced demo, please read the readme.md file under the gpt4_ros2 package." -n1 -s
+echo "Press any key to run Demo 1: Simple robot GPT call on the PC side."
+read -p "If you need to run a more advanced demo, please read the readme.md file under the gpt4_ros2 package." -n1 -s
 gnome-terminal --disable-factory -- bash -c 'ros2 run gpt_main gpt_ros2_server' &
 gnome-terminal --disable-factory -- bash -c 'ros2 run gpt_main gpt_ros2_client' &
 
