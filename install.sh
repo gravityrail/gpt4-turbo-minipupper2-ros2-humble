@@ -29,9 +29,9 @@ cd $HOME/gpt4_ros2_ws/src
 git clone --depth=1 https://github.com/Hermanye996/gpt4_ros2.git
 
 # Install necessary dependencies
-$BASEDIR/dependencies_install.sh
-
-cd ..
+cd gpt4_ros2
+. dependencies_install.sh
+cd $HOME/gpt4_ros2_ws
 gpt4_ros2_ws_dir=$(pwd)
 echo $gpt4_ros2_ws_dir
 rosdep install --from-paths src --ignore-src -r -y
