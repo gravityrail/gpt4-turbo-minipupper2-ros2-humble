@@ -2,7 +2,7 @@
 
 # gpt4_ros2
 
-This project provides a ROS2 Humble interface specially designed for GPT, enabling GPT to control and interact with your robots. By using GPT, you can enhance your robot with engaging interactive features that increase its functionality in the ROS2 ecosystem. As the GPT-4 multi-mode interface becomes available, we will continue to update the corresponding ROS2 application. This ROS2 wrapper is designed to allow developers and researchers to easily leverage the power of GPT models in their robotics applications.
+gpt4_ros2 project is a ROS2 Humble interface designed to empower your robots with advanced voice interaction and motion control capabilities. This package enables you to leverage LLM-based features, such as GPT-4 & ChatGPT, to enhance the functionality of their robotic applications within the ROS2 ecosystem. With an easy-to-use installation and customization process, gpt4_ros2 provides a dynamic solution for creating engaging and interactive experiences with any robot. 
 
 # Installation
 
