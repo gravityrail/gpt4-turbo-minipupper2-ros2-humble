@@ -1,8 +1,21 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# flake8: noqa
+#
+# Description:
+# This code defines a ROS2 server node which provides a GPTText service based on the GPT-3.5-turbo or GPT-4 model from OpenAI.
+# The GPTText service takes a user input as text prompt, generates chat completion using OpenAI API, and returns a chat response.
+# The server node relies on a GPTConfig module to manage LLM model configurations, including handling chat history and API settings.
+# A client node (such as the one in the previous example) can communicate with this server node to receive AI-generated responses.
+# This example script is useful for integrating a LLM, using the OpenAI API, within a ROS2-based system for natural language processing and chatbot applications. 
+#
+# Author: Herman Ye @Mangdang Robotics
+
 import rclpy
 from rclpy.node import Node
 import openai
 from gpt_interfaces.srv import GPTText
-from .gpt_config import GPTConfig
+from gpt_status.gpt_config import GPTConfig
 
 
 config = GPTConfig()

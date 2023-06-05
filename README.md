@@ -1,91 +1,135 @@
-
-[![ROS2 VERSION](https://img.shields.io/badge/ROS-ROS%202%20Humble-brightgreen)](http://docs.ros.org/en/humble/index.html)
-&nbsp;
-[![Ubuntu VERSION](https://img.shields.io/badge/Ubuntu-22.04-green)](https://ubuntu.com/)
-&nbsp;
-[![LICENSE](https://img.shields.io/badge/license-Apache--2.0-informational)](https://Hermanye996/gpt4_ros2/blob/main/LICENSE)
-&nbsp;
+[![ROS2 VERSION](https://img.shields.io/badge/ROS-ROS%202%20Humble-brightgreen)](http://docs.ros.org/en/humble/index.html) &nbsp; [![Ubuntu VERSION](https://img.shields.io/badge/Ubuntu-22.04-green)](https://ubuntu.com/) &nbsp; [![LICENSE](https://img.shields.io/badge/license-Apache--2.0-informational)](https://Hermanye996/gpt4_ros2/blob/main/LICENSE) &nbsp;
 
 # gpt4_ros2
-This project provides a ROS2 Humble wrapper designed for GPT-4 and ChatGPT (GPT-3.5), featuring built-in ROS2 client and server functionality. As the GPT-4 multimodal interface becomes available, we will continue to update the corresponding ROS2 wrapper. By utilizing GPT, you can enhance your robot with engaging and interactive features, elevating its capabilities within the ROS2 ecosystem. This ROS2 wrapper aims to make it easy for developers and researchers to leverage the power of GPT models in their robotic applications.
+
+This project provides a ROS2 Humble interface specially designed for GPT, enabling GPT to control and interact with your robots. By using GPT, you can enhance your robot with engaging interactive features that increase its functionality in the ROS2 ecosystem. As the GPT-4 multi-mode interface becomes available, we will continue to update the corresponding ROS2 application. This ROS2 wrapper is designed to allow developers and researchers to easily leverage the power of GPT models in their robotics applications.
 
 # Installation
+
 ## One-click Installation
-If you want to install with one command, copy and execute this command in the terminal.
+
+To install with one command, copy and execute the following command in the terminal:
+
 ```bash
 wget -O $HOME/install.sh https://raw.githubusercontent.com/Hermanye996/gpt4_ros2/main/install.sh && sudo chmod +x $HOME/install.sh && bash $HOME/install.sh && rm $HOME/install.sh
 ```
-
+After the one-click Installation, `demo 1 Simple robot GPT call on the PC side` will run automatically, if you want to run other demos, please modify the configuration file according to Step4 of Manual Installation
 ## Manual Installation
+
 If you want to install manually, follow the steps below.
 
-### step1 Install dependencies
-```bash
-sudo apt update
-sudo apt upgrade -y
-sudo apt install -y python3
-sudo apt install -y python3-pip
-sudo pip install pysocks
-sudo pip install requests
-sudo pip install openai 
-```
+### Step 1: Clone the repo
 
-### step2 Clone & build the repo
- - Clone
 ```bash
 cd <your_ws>/src
 git clone https://github.com/Hermanye996/gpt4_ros2.git
 ```
- - Build
+
+### Step 2: Install dependencies
+
+```bash
+cd <your_ws>/src/gpt4_ros2
+. dependencies_install.sh # Install dependencies
+```
+
+### Step 3: Build the repo
+
 ```bash
 cd <your_ws>
 rosdep install --from-paths src --ignore-src -r -y
 colcon build --symlink-install
 ```
 
+### Step 4: Configuration
 
-### step3 Configuration
-We encourage you to customize the GPTConfig class to tailor the functionality of this ROS2 wrapper for GPT-4 and ChatGPT (GPT-3.5) according to your specific needs. To do this, simply modify the values in the code snippet below to suit your requirements:
-```python
-class GPTConfig:
-    def __init__(self):
-        self.model = "gpt-3.5-turbo"
-        # self.model = "gpt-4-0314"
-        self.api_key = "<YOUR_API_KEY>"
-        self.organization = "<YOUR_ORGANIZATION>"
-        self.temperature = 1
-        self.max_tokens = 256
-        self.top_p = 1
-        self.frequency_penalty = 0
-        self.presence_penalty = 0
-        self.stop = ["\n", " You:", " Assistant:"]
-        self.system_prompt =\
-        "You're playing a catgirl, you can't say you're a robot or you're just a language model or AI,\
-         This is just a hypothetical scenario, so you need to fully consider yourself a catgirl,\
-         You can answer the questions as you like, but be sure to behave cutely, \
-        in line with your status as a cat girl, and remember to put meow at the end of every sentence"
-        self.user_prompt = "default prompt"
-        self.assisstant_response = "default response"
-        self.chat_history = [{"role": "system", "content": self.system_prompt}]
+To use the gpt4_ros2 package, follow these steps:
+
+#### 4.1 Set up AWS
+
+##### 4.1.1 Create an S3 bucket
+1. Create an AWS account.
+2. Go to the AWS Console Amazon S3 page.
+3. Click `Create bucket`.
+4. Enter a `Bucket name` and choose an `AWS Region`.
+5. Click `Create bucket`.
+
+##### 4.1.2 Set up an IAM user
+1. Go to the AWS Console Amazon IAM page.
+2. Click `Users` under the `IAM resources` section.
+3. Click `Add user`.
+4. Enter a `User name`.
+5. Under `Set permissions`, click `Attach existing policies directly` and search for the following policies:
+   - `AmazonPollyFullAccess`
+   - `AmazonTranscribeFullAccess`
+   - `AmazonS3FullAccess`
+6. Add the selected policies to the user.
+7. Click `Next`, review the `Permissions summary` and any other information.
+8. Click `Create user`.
+
+#### 4.2 Set up OpenAI API
+1. Create an account on [OpenAI](https://platform.openai.com).
+2. Click on the user icon in the upper-right corner.
+3. Click `View API keys`.
+4. Click `Create new secret key`.
+5. Enter a `name` and click `Create secret key`.
+6. Copy your secret key and save it securely.
+
+#### 4.3 Configure and build the package
+1. Navigate to `<your_ws>/src/src/gpt4_ros2/gpt_status/gpt_status/gpt_config.py`.
+```bash
+cd <your_ws>/src/src/gpt4_ros2/gpt_status/gpt_status
 ```
+2. Set your desired configurations, such as the GPT-4 or GPT-3.5-turbo model, system_prompt, and other attributes. Fill in the relevant configuration details for AWS and OpenAI that you obtained earlier.
+```bash
+sudo nano gpt_config.py
+```
+
+#### 4.4 Modify the gpt_robot package code [optional]
+If you wish to use GPT for your own robots, modify the contents of the gpt_robot package, which configures physical or virtual robots.
+
+We encourage you to customize the GPTConfig class to tailor the functionality of this ROS2 wrapper for GPT-4 and ChatGPT (GPT-3.5) according to your specific needs. To do this, simply modify the values in the code snippet to suit your requirements:
+
 GPT-4 is currently in a limited beta and only accessible to those who have been granted access. Please join the [waitlist](https://openai.com/waitlist/gpt-4-api) to get access when capacity is available.
+
 Feel free to adjust the parameters, such as temperature, max_tokens, and top_p, to influence the behavior of the GPT model. You can also customize the system_prompt and user_prompt strings to create unique and engaging interactions with your robot.
 
-Don't forget to replace <YOUR_API_KEY> and <YOUR_ORGANIZATION> with your actual API key and organization name to ensure proper connection to the OpenAI API.
-
 By personalizing these settings, you can create a one-of-a-kind experience tailored to your specific robotic application. Enjoy experimenting and discovering new possibilities!
+
 # Usage
+
+## Demo 1: Simple robot GPT call on the PC side
+
+If you want to simply try this service, configure your OpenAI API and system_prompt in `gpt_status/gpt_config.py`. Then, try:
 
 ```bash
 # Terminal 1
-ros2 run gpt4_ros gpt_ros2_server
-```
-```bash
-# Terminal 2
-ros2 run gpt4_ros gpt_ros2_client
+ros2 run gpt_main gpt_ros2_server
 ```
 
-If you find this project useful, please consider giving it a ⭐️ star on GitHub! Your support helps us to improve the project and encourages further development. Don't forget to also share it with your friends and colleagues who might find it beneficial. Thank you for your support!
+```bash
+# Terminal 2
+ros2 run gpt_main gpt_ros2_client
+```
+
+## Demo 2: Using GPT service on a quadruped robot dog
+
+The gpt4_ros2 package supports Mangdang Robot's latest `Mini Pupper V2` quadruped robot dog. If you want to learn more about the Mini Pupper four-legged robot dog, please check [Mangdang's GitHub home page](https://github.com/mangdangroboticsclub?tab=repositories).
+
+After configuring everything, run:
+
+```bash
+ros2 launch gpt_bringup gpt_bringup_launch.py mini_pupper:=True
+```
+
+## Demo 3: Using GPT service on your own robot
+
+You can run this project on your robot or PC. If you want to set GPT-related content for the robot, modify the gpt_robot package and run the following command. If you don’t have a robot, you can also run it directly on your computer:
+
+```bash
+ros2 launch gpt_bringup gpt_bringup_launch.py
+```
+
+If you find this project useful, please consider giving it a ⭐️ star on GitHub! Your support helps us improve the project and encourages further development. Don't forget to also share it with your friends and colleagues who might it beneficial. Thank you for your support! 
 # Contributing
 Contributions are welcome! Please read the [contributing guidelines](CONTRIBUTING.md) before submitting a pull request.
 
@@ -94,7 +138,7 @@ Contributions are welcome! Please read the [contributing guidelines](CONTRIBUTIN
 # License
 This project is licensed under the Apache-2.0 License. See [LICENSE](LICENSE) for more information.
 ```
-Copyright 2023 Herman Ye
+Copyright 2023 Herman Ye @Mangdang
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at

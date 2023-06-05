@@ -1,0 +1,36 @@
+{
+    "python.analysis.extraPaths": [
+        "/home/hermanye/gpt4_ros2_ws/build/gpt_robot",
+        "/home/hermanye/gpt4_ros2_ws/install/gpt_robot/lib/python3.10/site-packages",
+        "/home/hermanye/gpt4_ros2_ws/build/gpt_main",
+        "/home/hermanye/gpt4_ros2_ws/install/gpt_main/lib/python3.10/site-packages",
+        "/home/hermanye/gpt4_ros2_ws/build/gpt_bringup",
+        "/home/hermanye/gpt4_ros2_ws/install/gpt_bringup/lib/python3.10/site-packages",
+        "/home/hermanye/gpt4_ros2_ws/build/gpt_audio",
+        "/home/hermanye/gpt4_ros2_ws/install/gpt_audio/lib/python3.10/site-packages",
+        "/home/hermanye/gpt4_ros2_ws/build/gpt_status",
+        "/home/hermanye/gpt4_ros2_ws/install/gpt_status/lib/python3.10/site-packages",
+        "/home/hermanye/gpt4_ros2_ws/install/gpt_interfaces/local/lib/python3.10/dist-packages",
+        "/home/hermanye/CODE/2023.5.18/gpt4_ros2/build/audio",
+        "/home/hermanye/CODE/2023.5.18/gpt4_ros2/install/audio/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.autoComplete.extraPaths": [
+        "/home/hermanye/gpt4_ros2_ws/build/gpt_robot",
+        "/home/hermanye/gpt4_ros2_ws/install/gpt_robot/lib/python3.10/site-packages",
+        "/home/hermanye/gpt4_ros2_ws/build/gpt_main",
+        "/home/hermanye/gpt4_ros2_ws/install/gpt_main/lib/python3.10/site-packages",
+        "/home/hermanye/gpt4_ros2_ws/build/gpt_bringup",
+        "/home/hermanye/gpt4_ros2_ws/install/gpt_bringup/lib/python3.10/site-packages",
+        "/home/hermanye/gpt4_ros2_ws/build/gpt_audio",
+        "/home/hermanye/gpt4_ros2_ws/install/gpt_audio/lib/python3.10/site-packages",
+        "/home/hermanye/gpt4_ros2_ws/build/gpt_status",
+        "/home/hermanye/gpt4_ros2_ws/install/gpt_status/lib/python3.10/site-packages",
+        "/home/hermanye/gpt4_ros2_ws/install/gpt_interfaces/local/lib/python3.10/dist-packages",
+        "/home/hermanye/CODE/2023.5.18/gpt4_ros2/build/audio",
+        "/home/hermanye/CODE/2023.5.18/gpt4_ros2/install/audio/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}
