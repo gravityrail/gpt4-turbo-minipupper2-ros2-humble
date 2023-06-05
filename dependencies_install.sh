@@ -12,6 +12,7 @@ set -e
 sudo apt update
 sudo apt upgrade -y
 sudo apt install gnome-terminal -y
+sudo apt-get install libcanberra-gtk-module libcanberra-gtk3-module -y
 sudo apt install -y python3
 sudo apt install -y python3-pip
 pip install pysocks
