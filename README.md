@@ -1,4 +1,4 @@
-[![ROS2 VERSION](https://img.shields.io/badge/ROS-ROS%202%20Humble-brightgreen)](http://docs.ros.org/en/humble/index.html) &nbsp; [![Ubuntu VERSION](https://img.shields.io/badge/Ubuntu-22.04-green)](https://ubuntu.com/) &nbsp; [![LICENSE](https://img.shields.io/badge/license-Apache--2.0-informational)](https://Hermanye996/gpt4_ros2/blob/main/LICENSE) &nbsp;
+[![ROS2 VERSION](https://img.shields.io/badge/ROS-ROS%202%20Humble-brightgreen)](http://docs.ros.org/en/humble/index.html) &nbsp; [![Ubuntu VERSION](https://img.shields.io/badge/Ubuntu-22.04-green)](https://ubuntu.com/) &nbsp; [![LICENSE](https://img.shields.io/badge/license-Apache--2.0-informational)](https://github.com/mangdangroboticsclub/gpt4_ros2/blob/main/LICENSE) &nbsp;
 
 # gpt4_ros2
 
@@ -11,7 +11,7 @@ gpt4_ros2 project is a ROS2 Humble interface designed to empower your robots wit
 To install with one command, copy and execute the following command in the terminal:
 
 ```bash
-wget -O $HOME/install.sh https://raw.githubusercontent.com/Hermanye996/gpt4_ros2/main/install.sh && sudo chmod +x $HOME/install.sh && bash $HOME/install.sh && rm $HOME/install.sh
+wget -O $HOME/install.sh https://raw.githubusercontent.com/mangdangroboticsclub/gpt4_ros2/main/install.sh && sudo chmod +x $HOME/install.sh && bash $HOME/install.sh && rm $HOME/install.sh
 ```
 After the one-click Installation, `demo 1 Simple robot GPT call on the PC side` will run automatically, if you want to run other demos, please modify the configuration file according to Step4 of Manual Installation
 ## Manual Installation
@@ -22,7 +22,7 @@ If you want to install manually, follow the steps below.
 
 ```bash
 cd <your_ws>/src
-git clone https://github.com/Hermanye996/gpt4_ros2.git
+git clone https://github.com/mangdangroboticsclub/gpt4_ros2.git
 ```
 
 ### Step 2: Install dependencies
@@ -116,8 +116,12 @@ ros2 run gpt_main gpt_ros2_client
 The gpt4_ros2 package supports Mangdang Robot's latest `Mini Pupper V2` quadruped robot dog. If you want to learn more about the Mini Pupper four-legged robot dog, please check [Mangdang's GitHub home page](https://github.com/mangdangroboticsclub?tab=repositories).
 
 After configuring everything, run:
-
 ```bash
+# Terminal 1 Bringup mini pupper
+ros2 launch mini_pupper_bringup bringup.launch.py
+```
+```bash
+# Terminal 2 Bringup GPT
 ros2 launch gpt_bringup gpt_bringup_launch.py mini_pupper:=True
 ```
 
@@ -138,7 +142,7 @@ Contributions are welcome! Please read the [contributing guidelines](CONTRIBUTIN
 # License
 This project is licensed under the Apache-2.0 License. See [LICENSE](LICENSE) for more information.
 ```
-Copyright 2023 Herman Ye @Mangdang
+Copyright 2023 Mangdang
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at

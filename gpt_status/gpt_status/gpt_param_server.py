@@ -2,6 +2,20 @@
 # -*- coding: utf-8 -*-
 # flake8: noqa
 #
+# Copyright 2023 MangDang
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
 # Description:
 # Python file for a ROS node that sets and gets the status of the GPT operation using ROS parameters.
 # Uses a GPTStatus class to define possible statuses for the GPT operation.
@@ -11,7 +25,7 @@
 # Defines a timer callback function that logs any changes in the GPT status.
 # Includes a main function that initializes the ROS node, spins the GPTParamServer node, and shuts down the node.
 #
-# Author: Herman Ye @Mangdang Robotics
+# Author: Herman Ye
 
 import rclpy
 from rclpy.node import Node

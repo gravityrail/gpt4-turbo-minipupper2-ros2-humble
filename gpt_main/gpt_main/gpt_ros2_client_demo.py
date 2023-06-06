@@ -2,6 +2,20 @@
 # -*- coding: utf-8 -*-
 # flake8: noqa
 #
+# Copyright 2023 MangDang
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
 # Description:
 # This code defines a ROS2 client node that communicates with a GPTText service.
 # The client node reads user input as a text prompt, sends it to the GPTText service and retrieves a response text from it.
@@ -9,7 +23,7 @@
 # The client node continuously reads user input and sends requests to the GPTText service until terminated.
 # This example script demonstrates the usage of a custom ROS2 service to communicate with GPT-3.5-turbo or GPT-4 and integrate it into a ROS2-based system.
 #
-# Author: Herman Ye @Mangdang Robotics
+# Author: Herman Ye
 
 
 import rclpy

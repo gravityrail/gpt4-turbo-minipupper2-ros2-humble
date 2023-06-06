@@ -2,6 +2,20 @@
 # -*- coding: utf-8 -*-
 # flake8: noqa
 #
+# Copyright 2023 MangDang
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
 # Description:
 # This launch file is a part of gpt4_ros2 project developed to control and interact with the Mini Pupper robot or your own robot.
 # The launch file contains a LaunchDescription object which defines the ROS2 nodes to be executed.
@@ -16,7 +30,7 @@
 #
 # To use the GPT4_ROS2 with mini pupper, run `ros2 launch gpt_bringup gpt_bringup_launch.py mini_pupper:=True`
 #
-# Author: Herman Ye @Mangdang Robotics
+# Author: Herman Ye
 
 from launch import LaunchDescription
 from launch_ros.actions import Node
