@@ -45,6 +45,7 @@ git clone --depth=1 https://github.com/mangdangroboticsclub/gpt4_ros2.git
 
 # Install necessary dependencies
 cd gpt4_ros2
+sudo chmod +x dependencies_install.sh
 . dependencies_install.sh
 cd $HOME/gpt4_ros2_ws
 gpt4_ros2_ws_dir=$(pwd)
