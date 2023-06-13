@@ -19,8 +19,13 @@ It's a ROS2 Humble interface demo designed to empower Mini Pupper 2 with voice, 
 
 Mini Pupper 2 and Ubuntu 22.04 + ROS 2 Humble is required. Please follow the installation document [here](https://github.com/mangdangroboticsclub/mini_pupper_ros )
 
-To install with one command, copy and execute the following command in the terminal:
+To install with one command, connect to your Mini Pupper 2, be certain to tell ssh to allow X11 forwarding if you want to run demo 1.
 
+```bash
+ssh -o ForwardX11=yes ubuntu@<Your Mini Pupper 2 IP address>
+```
+
+and then run the following command:
 
 ```bash
 wget -O $HOME/install.sh https://raw.githubusercontent.com/mangdangroboticsclub/chatgpt-minipupper2-ros2-humble/main/install.sh && sudo chmod +x $HOME/install.sh && bash $HOME/install.sh && rm $HOME/install.sh
