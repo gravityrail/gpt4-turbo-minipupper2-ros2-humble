@@ -1,19 +1,36 @@
-[![ROS2 VERSION](https://img.shields.io/badge/ROS-ROS%202%20Humble-brightgreen)](http://docs.ros.org/en/humble/index.html) &nbsp; [![Ubuntu VERSION](https://img.shields.io/badge/Ubuntu-22.04-green)](https://ubuntu.com/) &nbsp; [![LICENSE](https://img.shields.io/badge/license-Apache--2.0-informational)](https://github.com/mangdangroboticsclub/gpt4_ros2/blob/main/LICENSE) &nbsp;
+[![ROS2 VERSION](https://img.shields.io/badge/ROS-ROS%202%20Humble-brightgreen)](http://docs.ros.org/en/humble/index.html) &nbsp; [![Ubuntu VERSION](https://img.shields.io/badge/Ubuntu-22.04-green)](https://ubuntu.com/) &nbsp; [![LICENSE](https://img.shields.io/badge/license-Apache--2.0-informational)](https://github.com/mangdangroboticsclub/chatgpt-minipupper2-ros2-humble/blob/main/LICENSE) &nbsp;
 
-# gpt4_ros2
+# Summary
 
-gpt4_ros2 project is a ROS2 Humble interface designed to empower your robots with advanced voice interaction and motion control capabilities. This package enables you to leverage LLM-based features, such as GPT-4 & ChatGPT, to enhance the functionality of their robotic applications within the ROS2 ecosystem. With an easy-to-use installation and customization process, gpt4_ros2 provides a dynamic solution for creating engaging and interactive experiences with any robot. 
+[![Watch the video](https://img.youtube.com/vi/UMX1kWoa8ek/maxresdefault.jpg)](https://youtu.be/UMX1kWoa8ek)
+
+This repo is only a draft demo based on Mini Pupper 2 with ROS2 Humble now. To try it, you need add your own AWS and chatGPT account info to config file(gpt_status/gpt_status/gpt_config.py).
+
+The basic process is, 
+
+your voice ---> Mini Pupper 2 record by Mic x2 ---> translate voice to text by AWS service ---> chatGPT API ---> translate text to voice by AWS service ---> Mini Pupper 2 voice Playback & Movement & emotion.
+
+
+It's a ROS2 Humble interface demo designed to empower Mini Pupper 2 with voice, motion, and emotion control capabilities. This package enables you to leverage LLM-based features, such as GPT-4 & ChatGPT, to enhance the functionality of their robotic applications within the ROS2 ecosystem. It provides a dynamic solution for creating engaging and interactive experiences. 
 
 # Installation
 
 ## One-click Installation
 
+Mini Pupper 2 and Ubuntu 22.04 + ROS 2 Humble is required. Please follow the installation document [here](https://github.com/mangdangroboticsclub/mini_pupper_ros )
+
 To install with one command, copy and execute the following command in the terminal:
 
+
 ```bash
-wget -O $HOME/install.sh https://raw.githubusercontent.com/mangdangroboticsclub/gpt4_ros2/main/install.sh && sudo chmod +x $HOME/install.sh && bash $HOME/install.sh && rm $HOME/install.sh
+wget -O $HOME/install.sh https://raw.githubusercontent.com/mangdangroboticsclub/chatgpt-minipupper2-ros2-humble/main/install.sh && sudo chmod +x $HOME/install.sh && bash $HOME/install.sh && rm $HOME/install.sh
 ```
+
 After the one-click Installation, `demo 1 Simple robot GPT call on the PC side` will run automatically, if you want to run other demos, please modify the configuration file according to Step4 of Manual Installation
+
+![Mini Pupper 2](imgs/MiniPupper.GPT.PCDemo.png)
+
+
 ## Manual Installation
 
 If you want to install manually, follow the steps below.
@@ -22,13 +39,14 @@ If you want to install manually, follow the steps below.
 
 ```bash
 cd <your_ws>/src
-git clone https://github.com/mangdangroboticsclub/gpt4_ros2.git
+git clone https://github.com/mangdangroboticsclub/chatgpt-minipupper2-ros2-humble.git
 ```
 
 ### Step 2: Install dependencies
 
 ```bash
-cd <your_ws>/src/gpt4_ros2
+cd <your_ws>/src/chatgpt-minipupper2-ros2-humble
+sudo chmod +x dependencies_install.sh
 . dependencies_install.sh # Install dependencies
 ```
 
@@ -75,9 +93,9 @@ To use the gpt4_ros2 package, follow these steps:
 6. Copy your secret key and save it securely.
 
 #### 4.3 Configure and build the package
-1. Navigate to `<your_ws>/src/src/gpt4_ros2/gpt_status/gpt_status/gpt_config.py`.
+1. Navigate to `<your_ws>/src/chatgpt-minipupper2-ros2-humble/gpt_status/gpt_status/gpt_config.py`.
 ```bash
-cd <your_ws>/src/src/gpt4_ros2/gpt_status/gpt_status
+cd <your_ws>/src/chatgpt-minipupper2-ros2-humble/gpt_status/gpt_status
 ```
 2. Set your desired configurations, such as the GPT-4 or GPT-3.5-turbo model, system_prompt, and other attributes. Fill in the relevant configuration details for AWS and OpenAI that you obtained earlier.
 ```bash
@@ -95,9 +113,10 @@ Feel free to adjust the parameters, such as temperature, max_tokens, and top_p, 
 
 By personalizing these settings, you can create a one-of-a-kind experience tailored to your specific robotic application. Enjoy experimenting and discovering new possibilities!
 
+
 # Usage
 
-## Demo 1: Simple robot GPT call on the PC side
+## Demo 1: Simple GPT call on the PC
 
 If you want to simply try this service, configure your OpenAI API and system_prompt in `gpt_status/gpt_config.py`. Then, try:
 
@@ -111,13 +130,12 @@ ros2 run gpt_main gpt_ros2_server
 ros2 run gpt_main gpt_ros2_client
 ```
 
-## Demo 2: Using GPT service on a quadruped robot dog
+## Demo 2: GPT service on Mini Pupper 2
 
-The gpt4_ros2 package supports Mangdang Robot's latest `Mini Pupper V2` quadruped robot dog. If you want to learn more about the Mini Pupper four-legged robot dog, please check [Mangdang's GitHub home page](https://github.com/mangdangroboticsclub?tab=repositories).
-
-After configuring everything, run:
+After configuring everything, run the below commands on Mini Pupper 2:
 ```bash
 # Terminal 1 Bringup mini pupper
+. ~/ros2_ws/install/setup.bash
 ros2 launch mini_pupper_bringup bringup.launch.py
 ```
 ```bash
@@ -125,22 +143,8 @@ ros2 launch mini_pupper_bringup bringup.launch.py
 ros2 launch gpt_bringup gpt_bringup_launch.py mini_pupper:=True
 ```
 
-## Demo 3: Using GPT service on your own robot
-
-You can run this project on your robot or PC. If you want to set GPT-related content for the robot, modify the gpt_robot package and run the following command. If you don’t have a robot, you can also run it directly on your computer:
-
-```bash
-ros2 launch gpt_bringup gpt_bringup_launch.py
-```
-
-If you find this project useful, please consider giving it a ⭐️ star on GitHub! Your support helps us improve the project and encourages further development. Don't forget to also share it with your friends and colleagues who might it beneficial. Thank you for your support! 
-# Contributing
-Contributions are welcome! Please read the [contributing guidelines](CONTRIBUTING.md) before submitting a pull request.
-
-
-
 # License
-This project is licensed under the Apache-2.0 License. See [LICENSE](LICENSE) for more information.
+This project is licensed under the Apache-2.0 License. 
 ```
 Copyright 2023 Mangdang
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -153,15 +157,3 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.                             
 ```
-# Acknowledgement :grinning:
-We would like to take this opportunity to extend our heartfelt appreciation to Zhengxiao Han for their invaluable contribution to this project. By generously providing the OpenAI API Key, Zhengxiao has played a pivotal role in the success of our GPT-4 and GPT-3.5(Chat GPT) interface for ROS2 Humble.
-
-Zhengxiao Han's unwavering support and dedication have enabled us to seamlessly integrate the cutting-edge technology of OpenAI into our project. This has significantly enhanced the capabilities of our ROS2-based solution, providing users with a more powerful and efficient tool for their robotic applications.
-
-Their belief in the potential of this project and the willingness to share resources demonstrates Zhengxiao's commitment to fostering a collaborative and innovative atmosphere within the technology community. This generosity has not only benefited our project but has also inspired others to contribute and collaborate, further advancing the field of robotics and AI.
-
-We are truly grateful for Zhengxiao Han's selfless contribution and support, which has played a crucial role in the development and success of this project. Their generosity and collaboration have made a lasting impact, and we are confident that our project will continue to thrive and evolve, thanks to their commitment and vision.
-
-Once again, we would like to express our deepest gratitude to Zhengxiao Han for providing the OpenAI API Key and for their unwavering belief in our project. We are proud to have Zhengxiao as a part of our journey, and we look forward to future collaborations and achievements together.
-
-(The above acknowledgments were generated by GPT-4)
