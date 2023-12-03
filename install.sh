@@ -41,7 +41,7 @@ if [ -d "$HOME/gpt4_ros2_ws" ]; then
 fi
 mkdir -p $HOME/gpt4_ros2_ws/src
 cd $HOME/gpt4_ros2_ws/src
-git clone --depth=1 https://github.com/gravityrail/gpt4-turbo-minipupper2-ros2-humble.git
+git clone --depth=1 https://github.com/gravityrail/gpt4-turbo-minipupper2-ros2-humble.git gpt4_ros2
 
 # Install necessary dependencies
 cd gpt4_ros2
