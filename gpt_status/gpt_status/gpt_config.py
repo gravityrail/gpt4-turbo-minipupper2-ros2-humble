@@ -31,8 +31,8 @@ class GPTConfig:
         # GPT related
         self.model = "gpt-3.5-turbo"
         # self.model = "gpt-4"
-        self.api_key = "<YOUR_API_KEY>"
-        self.organization = "<YOUR_ORGANIZATION>"
+        self.api_key = "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"
+        self.organization = "Automattic"
         self.temperature = 1
         self.max_tokens = 256
         self.top_p = 1
@@ -44,17 +44,19 @@ class GPTConfig:
         self.assistant_response = "default response"
         self.chat_history = [{"role": "system", "content": self.system_prompt}]
 
-        # AWS IAM related
-        self.aws_access_key_id = "<YOUR_AWS_ACCESS_KEY>"  # From Amazon IAM
-        self.aws_secret_access_key = "<YOUR_AWS_SECRET_ACCESS_KEY>"  # From Amazon IAM
-        self.aws_region_name = "<YOUR_AWS_REGION_NAME>"  # From Amazon S3
-        # AWS S3 related
-        self.bucket_name = "<YOUR_BUCKET_NAME>"  # S3 Bucket name
-        # AWS transcribe related
-        self.aws_transcription_language = "en-US"  # Change this to 'zh-CN' for Chinese
-        # AWS Polly related
-        self.aws_voice_id = "Ivy"  # Choose a voice that supports your language
-        # Audio recording related
-        self.duration = 7  # Audio recording duration, in seconds
-        self.sample_rate = 16000  # Sample rate
-        self.volume_gain_multiplier = 1  # Change this to increase or decrease the volume
+        # TODO: OpenAI TTS/STT
+
+        # # AWS IAM related
+        # self.aws_access_key_id = "<YOUR_AWS_ACCESS_KEY>"  # From Amazon IAM
+        # self.aws_secret_access_key = "<YOUR_AWS_SECRET_ACCESS_KEY>"  # From Amazon IAM
+        # self.aws_region_name = "<YOUR_AWS_REGION_NAME>"  # From Amazon S3
+        # # AWS S3 related
+        # self.bucket_name = "<YOUR_BUCKET_NAME>"  # S3 Bucket name
+        # # AWS transcribe related
+        # self.aws_transcription_language = "en-US"  # Change this to 'zh-CN' for Chinese
+        # # AWS Polly related
+        # self.aws_voice_id = "Ivy"  # Choose a voice that supports your language
+        # # Audio recording related
+        # self.duration = 7  # Audio recording duration, in seconds
+        # self.sample_rate = 16000  # Sample rate
+        # self.volume_gain_multiplier = 1  # Change this to increase or decrease the volume

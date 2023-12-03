@@ -1,4 +1,16 @@
+# Forked from MangDang Robotics Club
+
+These are the original creators of the Mini Pupper 2.
+
+https://github.com/mangdangroboticsclub/chatgpt-minipupper2-ros2-humble
+
 [![ROS2 VERSION](https://img.shields.io/badge/ROS-ROS%202%20Humble-brightgreen)](http://docs.ros.org/en/humble/index.html) &nbsp; [![Ubuntu VERSION](https://img.shields.io/badge/Ubuntu-22.04-green)](https://ubuntu.com/) &nbsp; [![LICENSE](https://img.shields.io/badge/license-Apache--2.0-informational)](https://github.com/mangdangroboticsclub/chatgpt-minipupper2-ros2-humble/blob/main/LICENSE) &nbsp;
+
+# Changes
+
+- stt using https://github.com/ros-ai/ros2_whisper?
+- stt using https://platform.openai.com/docs/guides/speech-to-text
+- tts using https://platform.openai.com/docs/guides/text-to-speech
 
 # Summary
 
@@ -6,12 +18,12 @@
 
 This repo is only a draft demo based on Mini Pupper 2 with ROS2 Humble now. To try it, you need add your own AWS and chatGPT account info to config file(gpt_status/gpt_status/gpt_config.py).
 
-The basic process is, 
+The basic process is,
 
 your voice ---> Mini Pupper 2 record by Mic x2 ---> translate voice to text by AWS service ---> chatGPT API ---> translate text to voice by AWS service ---> Mini Pupper 2 voice Playback & Movement & emotion.
 
 
-It's a ROS2 Humble interface demo designed to empower Mini Pupper 2 with voice, motion, and emotion control capabilities. This package enables you to leverage LLM-based features, such as GPT-4 & ChatGPT, to enhance the functionality of their robotic applications within the ROS2 ecosystem. It provides a dynamic solution for creating engaging and interactive experiences. 
+It's a ROS2 Humble interface demo designed to empower Mini Pupper 2 with voice, motion, and emotion control capabilities. This package enables you to leverage LLM-based features, such as GPT-4 & ChatGPT, to enhance the functionality of their robotic applications within the ROS2 ecosystem. It provides a dynamic solution for creating engaging and interactive experiences.
 
 # Installation
 
@@ -28,7 +40,7 @@ ssh -o ForwardX11=yes ubuntu@<Your Mini Pupper 2 IP address>
 and then run the following command:
 
 ```bash
-wget -O $HOME/install.sh https://raw.githubusercontent.com/mangdangroboticsclub/chatgpt-minipupper2-ros2-humble/main/install.sh && sudo chmod +x $HOME/install.sh && bash $HOME/install.sh && rm $HOME/install.sh
+wget -O $HOME/install.sh https://raw.githubusercontent.com/gravityrail/gpt4-turbo-minipupper2-ros2-humble/main/install.sh && sudo chmod +x $HOME/install.sh && bash $HOME/install.sh && rm $HOME/install.sh
 ```
 
 After the one-click Installation, `demo 1 Simple robot GPT call on the PC side` will run automatically, if you want to run other demos, please modify the configuration file according to Step4 of Manual Installation
@@ -44,13 +56,13 @@ If you want to install manually, follow the steps below.
 
 ```bash
 cd <your_ws>/src
-git clone https://github.com/mangdangroboticsclub/chatgpt-minipupper2-ros2-humble.git
+git clone https://github.com/gravityrail/gpt4-turbo-minipupper2-ros2-humble.git
 ```
 
 ### Step 2: Install dependencies
 
 ```bash
-cd <your_ws>/src/chatgpt-minipupper2-ros2-humble
+cd <your_ws>/src/gpt4-turbo-minipupper2-ros2-humble
 sudo chmod +x dependencies_install.sh
 . dependencies_install.sh # Install dependencies
 ```
@@ -67,28 +79,6 @@ colcon build --symlink-install
 
 To use the gpt4_ros2 package, follow these steps:
 
-#### 4.1 Set up AWS
-
-##### 4.1.1 Create an S3 bucket
-1. Create an AWS account.
-2. Go to the AWS Console Amazon S3 page.
-3. Click `Create bucket`.
-4. Enter a `Bucket name` and choose an `AWS Region`.
-5. Click `Create bucket`.
-
-##### 4.1.2 Set up an IAM user
-1. Go to the AWS Console Amazon IAM page.
-2. Click `Users` under the `IAM resources` section.
-3. Click `Add user`.
-4. Enter a `User name`.
-5. Under `Set permissions`, click `Attach existing policies directly` and search for the following policies:
-   - `AmazonPollyFullAccess`
-   - `AmazonTranscribeFullAccess`
-   - `AmazonS3FullAccess`
-6. Add the selected policies to the user.
-7. Click `Next`, review the `Permissions summary` and any other information.
-8. Click `Create user`.
-
 #### 4.2 Set up OpenAI API
 1. Create an account on [OpenAI](https://platform.openai.com).
 2. Click on the user icon in the upper-right corner.
@@ -98,9 +88,9 @@ To use the gpt4_ros2 package, follow these steps:
 6. Copy your secret key and save it securely.
 
 #### 4.3 Configure and build the package
-1. Navigate to `<your_ws>/src/chatgpt-minipupper2-ros2-humble/gpt_status/gpt_status/gpt_config.py`.
+1. Navigate to `<your_ws>/src/gpt4-turbo-minipupper2-ros2-humble/gpt_status/gpt_status/gpt_config.py`.
 ```bash
-cd <your_ws>/src/chatgpt-minipupper2-ros2-humble/gpt_status/gpt_status
+cd <your_ws>/src/gpt4-turbo-minipupper2-ros2-humble/gpt_status/gpt_status
 ```
 2. Set your desired configurations, such as the GPT-4 or GPT-3.5-turbo model, system_prompt, and other attributes. Fill in the relevant configuration details for AWS and OpenAI that you obtained earlier.
 ```bash
@@ -149,7 +139,7 @@ ros2 launch gpt_bringup gpt_bringup_launch.py mini_pupper:=True
 ```
 
 # License
-This project is licensed under the Apache-2.0 License. 
+This project is licensed under the Apache-2.0 License.
 ```
 Copyright 2023 Mangdang
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -160,5 +150,5 @@ Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
-limitations under the License.                             
+limitations under the License.
 ```
