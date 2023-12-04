@@ -25,13 +25,14 @@
 #
 # Author: Herman Ye
 
+import os
 
 class GPTConfig:
     def __init__(self):
         # GPT related
         self.model = "gpt-3.5-turbo"
         # self.model = "gpt-4"
-        self.api_key = "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"
+        self.api_key = os.getenv("OPENAI_API_KEY", None)
         self.organization = "Automattic"
         self.temperature = 1
         self.max_tokens = 256
