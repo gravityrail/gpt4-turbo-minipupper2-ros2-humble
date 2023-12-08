@@ -27,6 +27,17 @@ It's a ROS2 Humble interface demo designed to empower Mini Pupper 2 with voice, 
 
 # Installation
 
+## Simulated Mode
+
+To install standalone on a PC you'll need WSL 2 with Ubuntu 20.04 LTS.
+
+To install on Linux, just use the distro above.
+
+```bash
+. ./install.sh
+
+```
+
 ## One-click Installation
 
 Mini Pupper 2 and Ubuntu 22.04 + ROS 2 Humble is required. Please follow the installation document [here](https://github.com/mangdangroboticsclub/mini_pupper_ros )
