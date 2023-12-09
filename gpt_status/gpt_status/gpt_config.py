@@ -17,10 +17,9 @@
 # limitations under the License.
 #
 # Description:
-# Defines a GPTConfig class to hold various configurations related to GPT, AWS, and audio recording.
+# Defines a GPTConfig class to hold various configurations related to GPT and audio recording.
 # Sets default values for GPT parameters such as model, API key, temperature, max tokens, and penalties.
 # Defines system and user prompts, assistant response, and chat history as default configurations.
-# Includes AWS IAM, S3, Transcribe, and Polly related configurations.
 # Defines audio recording related configurations such as duration, sample rate, and volume gain multiplier.
 #
 # Author: Herman Ye

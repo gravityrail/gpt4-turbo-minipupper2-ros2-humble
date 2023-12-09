@@ -19,8 +19,6 @@ pip install pysocks
 pip install requests
 pip install openai==1.3
 
-# Install AWS boto3
-pip install boto3
 pip install numpy
 pip install sounddevice
 pip install pydub

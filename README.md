@@ -16,11 +16,11 @@ https://github.com/mangdangroboticsclub/chatgpt-minipupper2-ros2-humble
 
 [![Watch the video](https://img.youtube.com/vi/UMX1kWoa8ek/maxresdefault.jpg)](https://youtu.be/UMX1kWoa8ek)
 
-This repo is only a draft demo based on Mini Pupper 2 with ROS2 Humble now. To try it, you need add your own AWS and chatGPT account info to config file(gpt_status/gpt_status/gpt_config.py).
+This repo is only a draft demo based on Mini Pupper 2 with ROS2 Humble now. To try it, you need add your own chatGPT account info to config file(gpt_status/gpt_status/gpt_config.py).
 
 The basic process is,
 
-your voice ---> Mini Pupper 2 record by Mic x2 ---> translate voice to text by AWS service ---> chatGPT API ---> translate text to voice by AWS service ---> Mini Pupper 2 voice Playback & Movement & emotion.
+your voice ---> Mini Pupper 2 record by Mic x2 ---> translate voice to text by OpenAI STT service ---> chatGPT API ---> translate text to voice by OpenAI TTS service ---> Mini Pupper 2 voice Playback & Movement & emotion.
 
 
 It's a ROS2 Humble interface demo designed to empower Mini Pupper 2 with voice, motion, and emotion control capabilities. This package enables you to leverage LLM-based features, such as GPT-4 & ChatGPT, to enhance the functionality of their robotic applications within the ROS2 ecosystem. It provides a dynamic solution for creating engaging and interactive experiences.
@@ -135,7 +135,7 @@ To use the gpt4_ros2 package, follow these steps:
 ```bash
 cd <your_ws>/src/gpt4-turbo-minipupper2-ros2-humble/gpt_status/gpt_status
 ```
-2. Set your desired configurations, such as the GPT-4 or GPT-3.5-turbo model, system_prompt, and other attributes. Fill in the relevant configuration details for AWS and OpenAI that you obtained earlier.
+2. Set your desired configurations, such as the GPT-4 or GPT-3.5-turbo model, system_prompt, and other attributes. Fill in the relevant configuration details for OpenAI that you obtained earlier.
 ```bash
 sudo nano gpt_config.py
 ```

@@ -17,14 +17,12 @@
 # limitations under the License.
 #
 # Description:
-# This script defines an audio input node for a robot's speech-related functionality.
-# The AudioInput class utilizes AWS services to record user audio input,
-# perform transcription with AWS Transcribe, and publish the transcribed text back to ROS2.
+# This script transcribes Audio input using OpenAI STT and publish the transcribed text back to ROS2.
 # The input volume can be re-scaled for robots with low output volume such as Mini Pupper v2.
 # It also supports continuous audio input and real-time transcription by checking the GPT status
 # and executing the audio input and transcription process accordingly.
 # The transcription results are published as ROS2 String messages to the "gpt_text_input_original" topic.
-# Make sure to configure the necessary AWS credentials and settings in the provided config file.
+# Make sure to configure the necessary OpenAI credentials and settings in the provided config file.
 #
 # Author: Herman Ye
 
