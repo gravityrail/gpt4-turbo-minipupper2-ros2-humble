@@ -17,7 +17,7 @@ sudo apt install -y python3
 sudo apt install -y python3-pip
 pip install pysocks
 pip install requests
-pip install openai
+pip install openai==1.3
 
 # Install AWS boto3
 pip install boto3

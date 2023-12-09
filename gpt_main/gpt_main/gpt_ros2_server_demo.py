@@ -36,7 +36,6 @@ config = GPTConfig()
 openai.api_key = config.api_key
 # openai.organization = config.organization
 
-
 class GPTServer(Node):
     def __init__(self):
         super().__init__('gpt_ros2_server')
