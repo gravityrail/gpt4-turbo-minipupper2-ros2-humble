@@ -34,8 +34,40 @@ To install standalone on a PC you'll need WSL 2 with Ubuntu 20.04 LTS.
 To install on Linux, just use the distro above.
 
 ```bash
-. ./install.sh
+cd ~
+mkdir -p gpt4_ros2_ws/src
+cd gpt4_ros2_ws/src
+git clone https://github.com/gravityrail/gpt4-turbo-minipupper2-ros2-humble.git gpt4_ros2
 
+cd gpt4_ros2
+sudo chmod +x dependencies_install.sh
+. dependencies_install.sh
+
+cd $HOME/gpt4_ros2_ws
+gpt4_ros2_ws_dir=$(pwd)
+echo $gpt4_ros2_ws_dir
+rosdep install --from-paths src --ignore-src -r -y
+source /opt/ros/humble/setup.bash
+colcon build --symlink-install
+```
+
+Modify your ~/.bashrc to include the following lines:
+
+```bash
+. $HOME/gpt4_ros2_ws/install/setup.bash
+export OPENAI_API_KEY="..."
+```
+
+Then, to run it:
+
+```bash
+bash -c 'ros2 run gpt_main gpt_ros2_server'
+```
+
+In another terminal:
+
+```bash
+bash -c 'ros2 run gpt_main gpt_ros2_client'
 ```
 
 ## One-click Installation
