@@ -27,14 +27,15 @@
 
 import rclpy
 from rclpy.node import Node
-import openai
+from openai import OpenAI
+
 from gpt_interfaces.srv import GPTText
 from gpt_status.gpt_config import GPTConfig
 
 
 config = GPTConfig()
-openai.api_key = config.api_key
 # openai.organization = config.organization
+client = OpenAI(api_key=config.api_key)
 
 class GPTServer(Node):
     def __init__(self):
@@ -81,16 +82,14 @@ class GPTServer(Node):
         This function takes the input and generates the chat completion
         and returns the response
         """
-        response = openai.ChatCompletion.create(
-            model=config.model,
-            messages=input,
-            temperature=config.temperature,
-            max_tokens=config.max_tokens,
-            top_p=config.top_p,
-            frequency_penalty=config.frequency_penalty,
-            presence_penalty=config.presence_penalty,
-            stop=config.stop,
-        )
+        response = client.chat.completions.create(model=config.model,
+        messages=input,
+        temperature=config.temperature,
+        max_tokens=config.max_tokens,
+        top_p=config.top_p,
+        frequency_penalty=config.frequency_penalty,
+        presence_penalty=config.presence_penalty,
+        stop=config.stop)
         return response
 
     def get_chat_response_text(self, response):
@@ -98,7 +97,7 @@ class GPTServer(Node):
         This function takes the response
         and returns the chat response text individually
         """
-        response_text = response['choices'][0]['message']['content'].strip()
+        response_text = response.choices[0].message.content.strip()
         config.assisstant_response = response_text
         return response_text
 

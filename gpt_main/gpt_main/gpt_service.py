@@ -33,7 +33,9 @@ from rclpy.node import Node
 from std_msgs.msg import String
 
 # GPT related
-import openai
+from openai import OpenAI
+
+client = OpenAI(api_key=config.api_key)
 
 # GPT status related
 from gpt_status.gpt_param_server import GPTStatus, GPTStatusOperation
@@ -42,7 +44,6 @@ from gpt_status.gpt_param_server import GPTStatus, GPTStatusOperation
 from gpt_status.gpt_config import GPTConfig
 
 config = GPTConfig()
-openai.api_key = config.api_key
 # openai.organization = config.organization
 
 
@@ -104,16 +105,14 @@ class GPTService(Node):
         and returns the response
         """
         try:
-            response = openai.ChatCompletion.create(
-                model=config.model,
-                messages=input,
-                temperature=config.temperature,
-                max_tokens=config.max_tokens,
-                top_p=config.top_p,
-                frequency_penalty=config.frequency_penalty,
-                presence_penalty=config.presence_penalty,
-                stop=config.stop,
-            )
+            response = client.chat.completions.create(model=config.model,
+            messages=input,
+            temperature=config.temperature,
+            max_tokens=config.max_tokens,
+            top_p=config.top_p,
+            frequency_penalty=config.frequency_penalty,
+            presence_penalty=config.presence_penalty,
+            stop=config.stop)
         except Exception as e:
             # Handle the error as per your requirement
             self.get_logger().error(f"Error: {e}")
