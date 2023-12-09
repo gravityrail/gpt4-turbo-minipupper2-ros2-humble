@@ -35,8 +35,6 @@ from std_msgs.msg import String
 # GPT related
 from openai import OpenAI
 
-client = OpenAI(api_key=config.api_key)
-
 # GPT status related
 from gpt_status.gpt_param_server import GPTStatus, GPTStatusOperation
 
@@ -46,6 +44,7 @@ from gpt_status.gpt_config import GPTConfig
 config = GPTConfig()
 # openai.organization = config.organization
 
+client = OpenAI(api_key=config.api_key)
 
 class GPTService(Node):
     def __init__(self):
@@ -124,7 +123,7 @@ class GPTService(Node):
         This function takes the response
         and returns the chat response text individually
         """
-        response_text = response["choices"][0]["message"]["content"].strip()
+        response_text = response.choices[0].message.content.strip()
         config.assisstant_response = response_text
         return response_text
 

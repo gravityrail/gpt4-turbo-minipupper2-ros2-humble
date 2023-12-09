@@ -32,10 +32,9 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
+from openai import OpenAI
 
-# AWS ASR related
-import boto3
-import datetime
+from pydub import AudioSegment
 
 # Audio recording related
 import sounddevice as sd
@@ -46,13 +45,12 @@ from gpt_status.gpt_param_server import GPTStatus, GPTStatusOperation
 from gpt_status.gpt_config import GPTConfig
 
 # Other libraries
-import time
-import json
-import requests
 import os
 
 config = GPTConfig()
 
+# openai.organization = config.organization
+client = OpenAI(api_key=config.api_key)
 
 class AudioInput(Node):
     def __init__(self):
@@ -63,17 +61,9 @@ class AudioInput(Node):
         )
         # Timer
         self.create_timer(1, self.run_audio_input_callback)
-        # AWS service initialization
-        self.aws_audio_file = "/tmp/user_audio_input.flac"
-        self.aws_access_key_id = config.aws_access_key_id
-        self.aws_secret_access_key = config.aws_secret_access_key
-        self.aws_region_name = config.aws_region_name
-        self.aws_session = boto3.Session(
-            aws_access_key_id=self.aws_access_key_id,
-            aws_secret_access_key=self.aws_secret_access_key,
-            region_name=self.aws_region_name,
-        )
-
+        
+        self.audio_file = "/tmp/gpt_audio.wav"
+        self.mp3_audio_file = "/tmp/gpt_audio.mp3"
         # Set the speaker volume to maximum for mini pupper v2
         # If you are using a different robot, please comment out the lines
         self.volume_gain_multiplier = config.volume_gain_multiplier
@@ -105,14 +95,6 @@ class AudioInput(Node):
         # For Mangdang mini pupper v2 quadruped robot, the volume is too low
         # so we need to increase the volume by 30x
 
-        # AWS S3 settings
-        bucket_name = config.bucket_name
-        audio_file_key = "gpt_audio.flac"  # Name of the audio file in S3
-        transcribe_job_name = f'my-transcribe-job-{datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")}'
-        # Name the conversion task based on time to ensure uniqueness
-        # Path of the audio file in S3
-        transcribe_job_uri = f"s3://{bucket_name}/{audio_file_key}"
-
         # Step 1: Record audio
         self.get_logger().info("Starting audio recording...")
         audio_data = sd.rec(
@@ -123,81 +105,33 @@ class AudioInput(Node):
         # Step 2: Increase the volume by a multiplier
         audio_data *= self.volume_gain_multiplier
 
-        # Step 3: Save audio to file
-        write(self.aws_audio_file, sample_rate, audio_data)
         self.get_logger().info("Audio recording complete!")
 
         # Set GPT status to SPEECH_TO_TEXT_PROCESSING
         self.gpt_operation.set_gpt_status_value(
             GPTStatus.SPEECH_TO_TEXT_PROCESSING.name
         )
-        # Step 4: Upload audio to AWS S3
-        s3 = self.aws_session.client("s3")
-        self.get_logger().info("Uploading audio to AWS S3...")
-        with open(self.aws_audio_file, "rb") as f:
-            s3.upload_fileobj(
-                Fileobj=f, Bucket=bucket_name, Key=audio_file_key
-            )
-        self.get_logger().info("Audio upload complete!")
 
-        # Step 5: Convert audio to text
-        transcribe = self.aws_session.client("transcribe")
-        self.get_logger().info("Starting audio to text conversion...")
-        transcribe.start_transcription_job(
-            TranscriptionJobName=transcribe_job_name,
-            LanguageCode=config.aws_transcription_language,
-            Media={"MediaFileUri": transcribe_job_uri},
+        # save as WAV
+        write(self.audio_file, config.sample_rate, audio_data)
+
+        # convert wav to mp3 with pydub
+        audio = AudioSegment.from_wav(self.audio_file)
+        audio.export(self.mp3_audio_file, format='mp3')
+        
+        with open(self.mp3_audio_file, "rb") as f:
+            # audio_bytes = f.read()
+            transcript = client.audio.transcriptions.create(
+                model="whisper-1", 
+                file=f
+            )
+
+        msg = String()
+        msg.data = transcript.text
+        self.publisher.publish(msg)
+        self.get_logger().info(
+            "Audio Input Node publishing: \n'%s'" % msg.data
         )
-
-        # Step 6: Wait until the conversion is complete
-        while True:
-            status = transcribe.get_transcription_job(
-                TranscriptionJobName=transcribe_job_name
-            )
-            if status["TranscriptionJob"]["TranscriptionJobStatus"] in [
-                "COMPLETED",
-                "FAILED",
-            ]:
-                break
-            time.sleep(1)
-            self.get_logger().info("Converting...")
-
-        # Step 7: Get the transcribed text
-        if status["TranscriptionJob"]["TranscriptionJobStatus"] == "COMPLETED":
-            transcript_file_url = status["TranscriptionJob"]["Transcript"][
-                "TranscriptFileUri"
-            ]
-            response = requests.get(transcript_file_url)
-            transcript_data = json.loads(response.text)
-            transcript_text = transcript_data["results"]["transcripts"][0][
-                "transcript"
-            ]
-            self.get_logger().info("Audio to text conversion complete!")
-            # Step 8: Publish the transcribed text to ROS2
-            if transcript_text == "":  # Empty input
-                # Set GPT status to WAITING_USER_INPUT
-                self.gpt_operation.set_gpt_status_value(
-                    GPTStatus.WAITING_USER_INPUT.name
-                )
-                self.get_logger().info(
-                    "Empty input, waiting for user input..."
-                )
-            else:
-                msg = String()
-                msg.data = transcript_text
-                self.publisher.publish(msg)
-                self.get_logger().info(
-                    "Audio Input Node publishing: \n'%s'" % msg.data
-                )
-
-            # Step 9: Delete the temporary audio file from AWS S3
-            s3.delete_object(Bucket=bucket_name, Key=audio_file_key)
-
-        else:
-            self.get_logger().error(
-                f"Failed to transcribe audio: {status['TranscriptionJob']['FailureReason']}"
-            )
-
 
 def main(args=None):
     rclpy.init(args=args)
