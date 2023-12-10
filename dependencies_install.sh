@@ -18,7 +18,9 @@ sudo apt install -y python3-pip
 pip install pysocks
 pip install requests
 pip install openai==1.3
-
+pip install depthai
+pip install opencv-python
+ 
 pip install numpy
 pip install sounddevice
 pip install pydub
